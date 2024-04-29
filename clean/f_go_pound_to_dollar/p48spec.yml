@@ -1,0 +1,17 @@
+# p48spec.yml
+name: GBP to Dollar Converter
+shortname: gogbptodollar
+runtime: go121
+entrypoint: ConvertGBPToUSD
+description: Converts pounds to dollars, takes a query param gbp - outputs json
+requirements:
+  - requestType: GET
+    requestName : convert
+    queryParams:
+      - name: gbp
+        required: true
+    outputSchema:
+      type: object
+      properties:
+        usd:
+          type: float

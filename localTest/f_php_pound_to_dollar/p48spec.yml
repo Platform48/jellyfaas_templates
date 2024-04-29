@@ -1,0 +1,17 @@
+# p48spec.yml
+name: GBP to Dollar Converter
+shortname: phpgbptodollar
+description: Converts pounds to dollars, takes a query param gbp - outputs json
+runtime: php82
+entrypoint: ConvertGBPToUSD
+requirements:
+  - requestType: GET
+    requestName : convert
+    queryParams:
+      - name: gbp
+        required: true
+    outputSchema:
+      type: object
+      properties:
+        usd:
+          type: float
