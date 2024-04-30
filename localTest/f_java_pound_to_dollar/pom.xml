@@ -6,6 +6,19 @@
  <version>0.0.1</version>
  <name>HTTP Function for Cloud Functions 2nd gen</name>
 
+<build>
+  <plugins>
+    <plugin>
+  <groupId>com.google.cloud.functions</groupId>
+  <artifactId>function-maven-plugin</artifactId>
+  <version>0.10.1</version>
+  <configuration>
+    <functionTarget>gcfv2.ConvertGBPToUSDFunction</functionTarget>
+  </configuration>
+</plugin>
+  </plugins>
+</build>
+
  <properties>
   <maven.compiler.release>21</maven.compiler.release>
  </properties>
