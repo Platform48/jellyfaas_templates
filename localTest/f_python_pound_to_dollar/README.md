@@ -7,6 +7,6 @@ pip install functions-framework
 
 or
 brew install pipx
-pipx install functions-framework
+pip(3/x) install functions-framework
 
 functions-framework --target convert_gbp_to_usd --debug
