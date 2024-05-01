@@ -1,12 +1,40 @@
-package converters
+package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
+	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
+	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 )
+
+// ******************************
+// Main wrapper for the function
+// ******************************
+
+func main() {
+	// Setup the HTTP server to listen on the default port
+	port := "8080"
+	ctx := context.Background() // Create a context that lives for the lifetime of the main function
+
+	// Register the HTTP function with context
+	if err := funcframework.RegisterHTTPFunctionContext(ctx, "/", convertGBPToUSD); err != nil {
+		log.Fatalf("funcframework.RegisterHTTPFunctionContext failed: %v\n", err)
+	}
+
+	log.Printf("Starting server on port %s\n", port)
+	if err := funcframework.Start(port); err != nil {
+		log.Fatalf("funcframework.Start failed: %v\n", err)
+	}
+}
+
+// *******************************
+// End of wrapper for the function
+// *******************************
 
 func init() {
 	functions.HTTP("ConvertGBPToUSD", convertGBPToUSD)
